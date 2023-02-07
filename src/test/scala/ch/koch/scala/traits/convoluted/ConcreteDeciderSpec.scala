@@ -11,13 +11,14 @@ class ConcreteDeciderSpec extends FunSuite:
   test("Happy case") {
     class Testee
         extends Decider
-        with FromMapPredicateProvider(
-          Map("a" -> Predicate("a", 23), "c" -> Predicate("c", 42))
+        with FromMapPredictionProvider(
+          Map("a" -> Prediction("a", 23), "c" -> Prediction("c", 42))
         )
-        with PredicateByKeySelector
+        with PredictionByKeySelector
         with SimpleCaseManager
     val testee: Decider = new Testee
-    val result = Await.ready(testee(Predicate("a", 15)), Duration.Inf).value.get
+    val result =
+      Await.ready(testee(Prediction("a", 15)), Duration.Inf).value.get
     result match {
       case Success(deliverIt: Boolean) => assert(deliverIt)
       case Failure(e)                  => fail(s"We screwed up with: $e")

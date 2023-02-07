@@ -4,11 +4,14 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
 
-trait Decider extends PredicateProvider with PredicateSelector with CaseManager:
+trait Decider
+    extends PredictionProvider
+    with PredictionSelector
+    with CaseManager:
 
-  def apply(theNewPredicate: Predicate): Future[Boolean] =
-    futurePredicates.map { predicates =>
-      val lastDeliveredPredicate: Option[Predicate] =
-        predicateByKeySelector(theNewPredicate, predicates)
-      caseManager(theNewPredicate, lastDeliveredPredicate)
+  def apply(theNewPrediction: Prediction): Future[Boolean] =
+    futurePredictions.map { predictions =>
+      val maybeLastDeliveredPrediction: Option[Prediction] =
+        predictionByKeySelector(theNewPrediction, predictions)
+      caseManager(theNewPrediction, maybeLastDeliveredPrediction)
     }
