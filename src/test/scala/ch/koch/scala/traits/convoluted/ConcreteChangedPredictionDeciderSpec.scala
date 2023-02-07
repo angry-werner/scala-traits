@@ -9,11 +9,22 @@ import scala.util.{Failure, Success, Try}
 
 class ConcreteChangedPredictionDeciderSpec extends FunSuite:
   test("Happy case") {
-    val result =
-      Await.ready(Testee()(Prediction("a", 15)), Duration.Inf).value.get
-    result match
-      case Success(deliverIt: Boolean) => assert(deliverIt)
-      case Failure(e)                  => fail(s"We screwed up with: $e")
+    val testee = Testee()
+
+    def forceDecision(
+        expectedDecision: Boolean,
+        prediction: Prediction
+    ): Unit =
+
+      val result = Await.ready(testee(prediction), Duration.Inf).value.get
+      result match
+        case Success(deliverIt: Boolean) =>
+          assert(deliverIt == expectedDecision)
+        case Failure(e) => fail(s"We screwed up with: $e")
+
+    forceDecision(true, Prediction("b", 0))
+    forceDecision(false, Prediction("a", 23))
+    forceDecision(true, Prediction("c", 43))
   }
 
 private case class Testee()
