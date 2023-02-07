@@ -8,21 +8,21 @@ import scala.util.{Failure, Success}
 
 class FromMapPredictionProviderSpec extends FunSuite:
   test("Happy case wired up") {
-    class Testee extends FromMapPredictionProvider(Map())
+    case class Testee() extends FromMapPredictionProvider(Map())
     val result =
-      Await.ready((new Testee).futurePredictions, Duration.Inf).value.get
+      Await.ready(Testee().futurePredictions, Duration.Inf).value.get
     result match
       case Success(predictions) => assert(predictions.size == 0)
       case Failure(e)           => fail(s"We screwed up with: $e")
   }
 
   test("Happy case with content") {
-    class Testee
+    case class Testee()
         extends FromMapPredictionProvider(
           Map("a" -> Prediction("a", 23), "c" -> Prediction("c", 42))
         )
     val result =
-      Await.ready((new Testee).futurePredictions, Duration.Inf).value.get
+      Await.ready(Testee().futurePredictions, Duration.Inf).value.get
     result match
       case Success(predictions) =>
         assert(predictions.size == 2)

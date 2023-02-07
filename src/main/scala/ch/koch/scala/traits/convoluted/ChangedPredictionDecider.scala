@@ -5,7 +5,8 @@ import scala.concurrent.Future
 import scala.util.{Failure, Success}
 
 trait ChangedPredictionDecider
-    extends PredictionProvider
+    extends Decider
+    with PredictionProvider
     with PredictionSelector
     with CaseManager:
 
