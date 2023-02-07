@@ -11,10 +11,9 @@ class FromMapPredictionProviderSpec extends FunSuite:
     class Testee extends FromMapPredictionProvider(Map())
     val result =
       Await.ready((new Testee).futurePredictions, Duration.Inf).value.get
-    result match {
+    result match
       case Success(predictions) => assert(predictions.size == 0)
       case Failure(e)           => fail(s"We screwed up with: $e")
-    }
   }
 
   test("Happy case with content") {
@@ -24,11 +23,10 @@ class FromMapPredictionProviderSpec extends FunSuite:
         )
     val result =
       Await.ready((new Testee).futurePredictions, Duration.Inf).value.get
-    result match {
+    result match
       case Success(predictions) =>
         assert(predictions.size == 2)
         assert(predictions.get("a").get.value == 23)
         assert(predictions.get("c").get.value == 42)
       case Failure(e) => fail(s"We screwed up with: $e")
-    }
   }
