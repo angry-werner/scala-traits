@@ -1,6 +1,7 @@
-package ch.koch.scala.traits.convoluted.predictionproviderimpl
+package ch.koch.scala.traits.convoluted.impl
 
-import ch.koch.scala.traits.convoluted.{Prediction, PredictionProvider}
+import ch.koch.scala.traits.convoluted.PredictionProvider
+import ch.koch.scala.traits.convoluted.model.Prediction
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future

@@ -1,6 +1,7 @@
-package ch.koch.scala.traits.convoluted.onepredictionimpl
+package ch.koch.scala.traits.convoluted.oneprediction.impl
 
-import ch.koch.scala.traits.convoluted.{OnePredictionCaseManager, Prediction}
+import ch.koch.scala.traits.convoluted.model.Prediction
+import ch.koch.scala.traits.convoluted.oneprediction.OnePredictionCaseManager
 
 trait SimpleOnePredictionCaseManagerOnePrediction extends OnePredictionCaseManager:
   override val caseManager: (Prediction, Option[Prediction]) => Boolean =

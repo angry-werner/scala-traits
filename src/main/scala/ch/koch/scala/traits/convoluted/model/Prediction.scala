@@ -1,4 +1,4 @@
-package ch.koch.scala.traits.convoluted
+package ch.koch.scala.traits.convoluted.model
 
 import java.util.Date
 

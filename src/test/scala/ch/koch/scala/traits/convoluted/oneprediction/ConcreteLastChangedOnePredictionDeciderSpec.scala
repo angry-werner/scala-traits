@@ -1,16 +1,18 @@
-package ch.koch.scala.traits.convoluted
+package ch.koch.scala.traits.convoluted.oneprediction
 
-import ch.koch.scala.traits.convoluted.onepredictionimpl.{
+import ch.koch.scala.traits.convoluted.model.Prediction
+import ch.koch.scala.traits.convoluted.oneprediction.LastChangedOneOnePredictionDecider
+import ch.koch.scala.traits.convoluted.impl.FromMapPredictionProvider
+import ch.koch.scala.traits.convoluted.oneprediction.impl.{
   SimpleOnePredictionCaseManagerOnePrediction,
   SinglePredictionByKeySelector
 }
-import ch.koch.scala.traits.convoluted.predictionproviderimpl.FromMapPredictionProvider
 import munit.Clue.generate
 import munit.FunSuite
 
 import java.util.Date
-import scala.concurrent.{Await, Future}
 import scala.concurrent.duration.Duration
+import scala.concurrent.{Await, Future}
 import scala.util.{Failure, Success, Try}
 
 class ConcreteLastChangedOnePredictionDeciderSpec extends FunSuite:

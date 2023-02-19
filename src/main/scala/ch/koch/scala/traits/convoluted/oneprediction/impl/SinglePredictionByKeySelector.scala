@@ -1,6 +1,7 @@
-package ch.koch.scala.traits.convoluted.onepredictionimpl
+package ch.koch.scala.traits.convoluted.oneprediction.impl
 
-import ch.koch.scala.traits.convoluted.{Prediction, OnePredictionSelector}
+import ch.koch.scala.traits.convoluted.model.Prediction
+import ch.koch.scala.traits.convoluted.oneprediction.OnePredictionSelector
 
 trait SinglePredictionByKeySelector extends OnePredictionSelector:
   override val predictionByKeySelector: (Prediction, Map[String, Prediction]) => Option[Prediction] =

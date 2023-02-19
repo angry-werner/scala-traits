@@ -1,7 +1,7 @@
-package ch.koch.scala.traits.convoluted.predictionproviderimpl
+package ch.koch.scala.traits.convoluted.impl
 
-import ch.koch.scala.traits.convoluted.Prediction
-import ch.koch.scala.traits.convoluted.predictionproviderimpl.FromMapPredictionProvider
+import ch.koch.scala.traits.convoluted.model.Prediction
+import ch.koch.scala.traits.convoluted.impl.FromMapPredictionProvider
 import munit.FunSuite
 
 import java.util.Date
