@@ -15,7 +15,6 @@ class ConcreteChangedPredictionDeciderSpec extends FunSuite:
         expectedDecision: Boolean,
         prediction: Prediction
     ): Unit =
-
       val result = Await.ready(testee(prediction), Duration.Inf).value.get
       result match
         case Success(deliverIt: Boolean) =>
