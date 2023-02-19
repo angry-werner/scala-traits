@@ -1,4 +1,4 @@
 package ch.koch.scala.traits.convoluted
 
-trait CaseManager:
+trait OnePredictionCaseManager:
   val caseManager: (Prediction, Option[Prediction]) => Boolean

@@ -1,6 +1,6 @@
 package ch.koch.scala.traits.convoluted
 
-trait PredictionSelector:
+trait OnePredictionSelector:
   val predictionByKeySelector: (
       Prediction,
       Map[String, Prediction]
