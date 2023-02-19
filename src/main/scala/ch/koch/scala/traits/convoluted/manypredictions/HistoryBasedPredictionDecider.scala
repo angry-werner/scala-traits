@@ -1,21 +1,19 @@
-package ch.koch.scala.traits.convoluted.oneprediction
+package ch.koch.scala.traits.convoluted.manypredictions
 
 import ch.koch.scala.traits.convoluted.model.Prediction
 import ch.koch.scala.traits.convoluted.{Decider, PredictionProvider}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
-import scala.util.{Failure, Success}
 
-trait LastChangedOnePredictionDecider
+trait HistoryBasedPredictionDecider
     extends Decider
     with PredictionProvider
-    with OnePredictionSelector
-    with OnePredictionCaseManager:
+    with ManyPredictionsSelector
+    with HistoryBasedPredictionCaseManager:
 
   override def apply(theNewPrediction: Prediction): Future[Boolean] =
     pastPredictions.map { predictions =>
-      val maybeLastDeliveredPrediction: Option[Prediction] =
-        predictionSelector(theNewPrediction, predictions)
-      caseManager(theNewPrediction, maybeLastDeliveredPrediction)
+      val historyPredictions: List[Prediction] = predictionsSelector(theNewPrediction, predictions)
+      casemanager(theNewPrediction, historyPredictions)
     }
