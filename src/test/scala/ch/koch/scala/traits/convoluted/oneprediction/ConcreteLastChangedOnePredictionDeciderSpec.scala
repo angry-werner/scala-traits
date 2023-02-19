@@ -1,7 +1,7 @@
 package ch.koch.scala.traits.convoluted.oneprediction
 
 import ch.koch.scala.traits.convoluted.model.Prediction
-import ch.koch.scala.traits.convoluted.oneprediction.LastChangedOneOnePredictionDecider
+import ch.koch.scala.traits.convoluted.oneprediction.LastChangedOnePredictionDecider
 import ch.koch.scala.traits.convoluted.impl.FromMapPredictionProvider
 import ch.koch.scala.traits.convoluted.oneprediction.impl.{
   SimpleOnePredictionCaseManagerOnePrediction,
@@ -35,7 +35,7 @@ class ConcreteLastChangedOnePredictionDeciderSpec extends FunSuite:
   }
 
 private case class Testee()
-    extends LastChangedOneOnePredictionDecider
+    extends LastChangedOnePredictionDecider
     with FromMapPredictionProvider(
       Map("a" -> Prediction("a", 23, new Date()), "c" -> Prediction("c", 42, new Date()))
     )
